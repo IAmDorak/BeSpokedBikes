@@ -1,0 +1,55 @@
+﻿@page "/addsale"
+
+
+<section class="product-edit">
+    <h1 class="page-title">Add Sale</h1>
+    <EditForm Model="@CreateSale" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary></ValidationSummary>
+        <div class="form-group row">
+            <label for="product" class="col-sm-3">Product: </label>
+            <InputSelect id="product" class="form-control col-sm-8" @bind-Value="@ProductId">
+                @foreach (var product in Products)
+                {
+                    <option value="@product.Id">@product.Name</option>
+                }
+            </InputSelect>
+            <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => CreateSale.Product)" />
+        </div>
+
+        <div class="form-group row">
+            <label for="salesPerson" class="col-sm-3">Sales Person: </label>
+            <InputSelect id="salesPerson" class="form-control col-sm-8" @bind-Value="@SalesPersonId">
+                @foreach (var salesPerson in SalesPersons)
+                {
+                    <option value="@salesPerson.Id">@salesPerson.FirstName @salesPerson.LastName</option>
+                }
+            </InputSelect>
+            <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => CreateSale.SalesPerson)" />
+        </div>
+
+        <div class="form-group row">
+            <label for="customer" class="col-sm-3">Customer: </label>
+            <InputSelect id="customer" class="form-control col-sm-8" @bind-Value="@CustomerId">
+                @foreach (var customer in Customers)
+                {
+                    <option value="@customer.Id">@customer.FirstName @customer.LastName</option>
+                }
+            </InputSelect>
+            <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => CreateSale.Customer)" />
+        </div>
+
+        <div class="form-group row">
+            <label for="saleDate" class="col-sm-3">Sale Date: </label>
+            <InputDate id="saleDate" class="form-control col-sm-8" @bind-Value="@CreateSale.SaleDate"></InputDate>
+            <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => CreateSale.SaleDate)" />
+        </div>
+
+        <button type="submit" class="btn btn-primary edit-btn">Add Sale</button>
+        <a class="btn btn-outline-primary" @onclick="@NavigateToSales">Cancel</a>
+    </EditForm>
+</section>
+@if (Failed)
+{
+    <div class="alert alert-danger">@Message</div>
+}

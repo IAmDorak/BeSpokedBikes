@@ -1,0 +1,58 @@
+﻿@page "/editproduct/{Id}"
+
+
+<section class="product-edit">
+    <h1 class="page-title">Update @UpdateProduct.Name</h1>
+    <EditForm Model="@UpdateProduct" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary></ValidationSummary>
+        <div class="form-group row">
+            <label for="name" class="col-sm-3">Name: </label>
+            <InputText id="name" class="form-control col-sm-8" @bind-Value="@UpdateProduct.Name" placeholder="Enter name"></InputText>
+            <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => UpdateProduct.Name)" />
+        </div>
+
+        <div class="form-group row">
+            <label for="manufacture" class="col-sm-3">Manufacture: </label>
+            <InputText id="manufacture" class="form-control col-sm-8" @bind-Value="@UpdateProduct.Manufacture" placeholder="Enter manufacture"></InputText>
+            <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => UpdateProduct.Manufacture)" />
+        </div>
+
+        <div class="form-group row">
+            <label for="style" class="col-sm-3">Style: </label>
+            <InputText id="style" class="form-control col-sm-8" @bind-Value="@UpdateProduct.Style" placeholder="Enter style"></InputText>
+            <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => UpdateProduct.Style)" />
+        </div>
+
+        <div class="form-group row">
+            <label for="purchasePrice" class="col-sm-3">Purchase Price: </label>
+            <InputNumber id="purchasePrice" class="form-control col-sm-8" @bind-Value="@UpdateProduct.PurchasePrice" placeholder="Enter purchase price"></InputNumber>
+            <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => UpdateProduct.PurchasePrice)" />
+        </div>
+
+        <div class="form-group row">
+            <label for="salePrice" class="col-sm-3">Sale Price: </label>
+            <InputNumber id="salePrice" class="form-control col-sm-8" @bind-Value="@UpdateProduct.SalePrice" placeholder="Enter sales price"></InputNumber>
+            <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => UpdateProduct.SalePrice)" />
+        </div>
+
+        <div class="form-group row">
+            <label for="qtyOnHand" class="col-sm-3">Quantity On Hand: </label>
+            <InputNumber id="qtyOnHand" class="form-control col-sm-8" @bind-Value="@UpdateProduct.QtyOnHand" placeholder="Enter quantity on hand"></InputNumber>
+            <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => UpdateProduct.QtyOnHand)" />
+        </div>
+
+        <div class="form-group row">
+            <label for="commissionPercentage" class="col-sm-3">Commission Percentage: </label>
+            <InputNumber id="commissionPercentage" class="form-control col-sm-8" @bind-Value="@UpdateProduct.CommissionPercentage" placeholder="Enter commission percentage"></InputNumber>
+            <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => UpdateProduct.CommissionPercentage)" />
+        </div>
+
+        <button type="submit" class="btn btn-primary edit-btn">Update Product</button>
+        <a class="btn btn-outline-primary" @onclick="@NavigateToProducts">Cancel</a>
+    </EditForm>
+</section>
+@if (Failed)
+{
+    <div class="alert alert-danger">@Message</div>
+}

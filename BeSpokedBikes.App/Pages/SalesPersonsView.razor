@@ -1,0 +1,42 @@
+﻿@page "/salespersons"
+
+<h1 class="page-title">Sales Persons</h1>
+
+@if (SalesPersons == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Start Date</th>
+                <th>Termination Date</th>
+                <th>Manager</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var salesPerson in SalesPersons)
+            {
+            <tr>
+                <td>@salesPerson.FirstName @salesPerson.LastName</td>
+                <td>@salesPerson.Address</td>
+                <td>@salesPerson.Phone</td>
+                <td>@salesPerson.StartDate</td>
+                <td>@salesPerson.TerminationDate</td>
+                <td>@salesPerson.Manager</td>
+                <td>
+                    <a href="@($"editsalesperson/{salesPerson.Id}")" class=" btn btn-primary table-btn">
+                        Update
+                    </a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}

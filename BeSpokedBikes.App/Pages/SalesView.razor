@@ -1,0 +1,40 @@
+﻿@page "/sales"
+
+<h1 class="page-title">Sales</h1>
+
+@if (Sales == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Customer</th>
+                <th>Sales Date</th>
+                <th>Price</th>
+                <th>Sales Person</th>
+                <th>Commission</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sale in Sales)
+            {
+                <tr>
+                    <td>@sale.ProductName</td>
+                    <td>@sale.CustomerFirstName @sale.CustomerLastName</td>
+                    <td>@sale.SaleDate.ToShortDateString()</td>
+                    <td>@sale.Price.ToString("C2")</td>
+                    <td>@sale.SalesPersonFirstName @sale.SalesPersonLastName</td>
+                    <td>@sale.SalesPersonCommission.ToString("C2")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="@("addsale")" class=" btn btn-primary edit-btn">
+        Add Sale
+    </a>
+}

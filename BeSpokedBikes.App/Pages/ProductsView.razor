@@ -1,0 +1,44 @@
+﻿@page "/products"
+
+<h1 class="page-title">Products</h1>
+
+@if (Products == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Manufacture</th>
+                <th>Style</th>
+                <th>Purchase Price</th>
+                <th>Sale Price</th>
+                <th>Quantity On Hand</th>
+                <th>Commission Percentage</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Products)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Manufacture</td>
+                    <td>@product.Style</td>
+                    <td>@product.PurchasePrice.ToString("C2")</td>
+                    <td>@product.SalePrice.ToString("C2")</td>
+                    <td>@product.QtyOnHand</td>
+                    <td>@product.CommissionPercentage.ToString("P1")</td>
+                    <td>
+                        <a href="@($"editproduct/{product.Id}")" class=" btn btn-primary table-btn">
+                            Update
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

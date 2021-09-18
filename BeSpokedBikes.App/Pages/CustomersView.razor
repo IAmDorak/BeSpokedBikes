@@ -1,0 +1,33 @@
+﻿@page "/customers"
+
+<h1 class="page-title">Customers</h1>
+
+@if (Customers == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Start Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Customers)
+            {
+                <tr>
+                    <td>@customer.FirstName @customer.LastName</td>
+                    <td>@customer.Address</td>
+                    <td>@customer.Phone</td>
+                    <td>@customer.StartDate.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
